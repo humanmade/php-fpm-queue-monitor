@@ -2,6 +2,8 @@
 name = "php-fpm-queue-monitor"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
+description = "A monitor for PHP-FPM listen queue, reporting metrics to AWS CloudWatch"
 
 # Build targets for cross-compilation
 [[bin]]
@@ -18,3 +20,15 @@ serde_json = "1.0"
 anyhow = "1.0"
 tracing = "0.1"
 tracing-subscriber = "0.3"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+strip = true
+
+[package.metadata.generate-rpm]
+assets = [
+    { source = "target/release/php-fpm-queue-monitor", dest = "/usr/bin/php-fpm-queue-monitor", mode = "0755" },
+    { source = "php-fpm-queue-monitor.service", dest = "/etc/systemd/system/php-fpm-queue-monitor.service", mode = "0644" },
+    { source = "php-fpm-queue-monitor.conf", dest = "/etc/php-fpm-queue-monitor.conf", mode = "0644", config = true },
+]

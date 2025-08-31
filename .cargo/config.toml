@@ -2,3 +2,9 @@
 # Docker build aliases - use 'sh -c' to properly execute shell commands
 docker-build = ["sh", "-c", "docker run --rm -v $(pwd):/workspace -w /workspace al2-rust cargo build"]
 docker-build-release = ["sh", "-c", "docker run --rm -v $(pwd):/workspace -w /workspace al2-rust cargo build --release"]
+
+[target.x86_64-unknown-linux-musl]
+rustflags = ["-C", "target-feature=+crt-static"]
+
+[target.aarch64-unknown-linux-musl]
+rustflags = ["-C", "target-feature=+crt-static"]

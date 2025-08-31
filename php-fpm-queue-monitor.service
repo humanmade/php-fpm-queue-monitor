@@ -1,0 +1,12 @@
+[Unit]
+Description=PHP-FPM Queue Monitor
+After=network.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/php-fpm-queue-monitor.conf
+ExecStart=/usr/bin/php-fpm-queue-monitor --interval ${INTERVAL} --namespace ${NAMESPACE} ${EXTRA_ARGS}
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
