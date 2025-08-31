@@ -36,6 +36,9 @@ jobs:
           command: build
           target: ${{ matrix.target }}
           args: "--release"
+    - run: |
+        mkdir -p artifacts
+        cp target/${{ matrix.target }}/release/php-fpm-queue-monitor artifacts/${{ matrix.name }}
 
     - name: Generate RPM
       run: cargo install cargo-generate-rpm
@@ -44,8 +47,6 @@ jobs:
 
     - name: Prepare artifact
       run: |
-        mkdir -p artifacts
-        cp target/${{ matrix.target }}/release/php-fpm-queue-monitor artifacts/${{ matrix.name }}
         cp target/${{ matrix.target }}/release/php-fpm-queue-monitor.rpm artifacts/${{ matrix.name }}.rpm
 
     - name: Upload artifact

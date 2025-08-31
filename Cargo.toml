@@ -28,7 +28,7 @@ strip = true
 
 [package.metadata.generate-rpm]
 assets = [
-    { source = "target/release/php-fpm-queue-monitor", dest = "/usr/bin/php-fpm-queue-monitor", mode = "0755" },
+    { source = "artifacts/php-fpm-queue-monitor", dest = "/usr/bin/php-fpm-queue-monitor", mode = "0755" },
     { source = "php-fpm-queue-monitor.service", dest = "/etc/systemd/system/php-fpm-queue-monitor.service", mode = "0644" },
     { source = "php-fpm-queue-monitor.conf", dest = "/etc/php-fpm-queue-monitor.conf", mode = "0644", config = true },
 ]
