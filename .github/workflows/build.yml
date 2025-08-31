@@ -49,7 +49,7 @@ jobs:
       run: |
         mkdir -p artifacts
         cp target/${{ matrix.target }}/release/php-fpm-queue-monitor artifacts/${{ matrix.name }}
-        cp target/${{ matrix.target }}/release/php-fpm-queue-monitor.rpm artifacts/${{ matrix.name }}.rpm
+        cp target/generate-rpm/php-fpm-queue-monitor.rpm artifacts/${{ matrix.name }}.rpm
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
