@@ -27,3 +27,4 @@ assets = [
     { source = "php-fpm-queue-monitor.service", dest = "/etc/systemd/system/php-fpm-queue-monitor.service", mode = "0644" },
     { source = "php-fpm-queue-monitor.conf", dest = "/etc/php-fpm-queue-monitor.conf", mode = "0644", config = true },
 ]
+compression = "gzip"
