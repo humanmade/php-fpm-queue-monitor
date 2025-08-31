@@ -37,7 +37,7 @@ jobs:
           target: ${{ matrix.target }}
           args: "--release"
           rust-cache-parameters: |
-            {"cache-all-crates": true}
+            {"cache-all-crates": true, "cache-on-failure": true}
     - run: |
         mkdir -p target/release
         cp target/${{ matrix.target }}/release/php-fpm-queue-monitor target/release/php-fpm-queue-monitor
