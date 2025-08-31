@@ -38,14 +38,11 @@ jobs:
           args: "--release"
           rust-cache-parameters: |
             {"cache-all-crates": true, "cache-on-failure": true}
-    - run: |
-        mkdir -p target/release
-        cp target/${{ matrix.target }}/release/php-fpm-queue-monitor target/release/php-fpm-queue-monitor
 
     - name: Generate RPM
       run: cargo install cargo-generate-rpm
 
-    - run: cargo generate-rpm
+    - run: cargo generate-rpm --target ${{ matrix.target }}
 
     - name: Prepare artifact
       run: |
@@ -53,13 +50,13 @@ jobs:
         ls target/generate-rpm
         mkdir -p artifacts
         cp target/${{ matrix.target }}/release/php-fpm-queue-monitor artifacts/${{ matrix.name }}
-        cp target/generate-rpm/*.rpm artifacts/${{ matrix.name }}.rpm
+        cp target/${{ matrix.target }}/target/generate-rpm/*.rpm artifacts/${{ matrix.name }}.rpm
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: ${{ matrix.name }}
-        path: artifacts/${{ matrix.name }}*
+        path: artifacts/
 
   upload-to-release:
     name: Upload to Release

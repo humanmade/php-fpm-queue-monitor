@@ -21,11 +21,6 @@ anyhow = "1.0"
 tracing = "0.1"
 tracing-subscriber = "0.3"
 
-[profile.release]
-panic = "abort"
-codegen-units = 1
-strip = true
-
 [package.metadata.generate-rpm]
 assets = [
     { source = "target/release/php-fpm-queue-monitor", dest = "/usr/bin/php-fpm-queue-monitor", mode = "0755" },
