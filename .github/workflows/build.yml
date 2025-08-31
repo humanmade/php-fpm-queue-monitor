@@ -44,8 +44,8 @@ jobs:
 
     - run: cargo generate-rpm --target ${{ matrix.target }}
 
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
+    # - name: Setup tmate session
+    #   uses: mxschmitt/action-tmate@v3
 
     - name: Prepare artifact
       run: |
@@ -55,7 +55,7 @@ jobs:
         ls target/${{ matrix.target }}/target/generate-rpm
         mkdir -p artifacts
         cp target/${{ matrix.target }}/release/php-fpm-queue-monitor artifacts/${{ matrix.name }}
-        cp target/${{ matrix.target }}/target/generate-rpm/*.rpm artifacts/${{ matrix.name }}.rpm
+        cp target/${{ matrix.target }}/generate-rpm/*.rpm artifacts/${{ matrix.name }}.rpm
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
