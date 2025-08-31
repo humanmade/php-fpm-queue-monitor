@@ -42,7 +42,7 @@ jobs:
     - name: Generate RPM
       run: cargo install cargo-generate-rpm
 
-    - run: cargo generate-rpm --target ${{ matrix.target }}
+    - run: cargo generate-rpm --target ${{ matrix.target }} --payload-compress gzip
 
     # - name: Setup tmate session
     #   uses: mxschmitt/action-tmate@v3
