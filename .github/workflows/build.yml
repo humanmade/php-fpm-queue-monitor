@@ -44,6 +44,9 @@ jobs:
 
     - run: cargo generate-rpm --target ${{ matrix.target }}
 
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+
     - name: Prepare artifact
       run: |
         ls target
